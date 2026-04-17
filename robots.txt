@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://daniel123xato-creator.github.io/waveform-vsl/sitemap.xml
