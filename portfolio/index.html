@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daniel Mosquito — Cantor, Músico & Produtor</title>
+<meta name="description" content="Daniel Mosquito — Cantor, músico, produtor e técnico de som gospel. +250 milhões de streams. Goiânia, Brasil.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#07080a;--dark:#0e0f12;--dark2:#141519;--surface:#1a1b20;
+  --border:rgba(255,255,255,0.06);--gold:#d4a843;--gold2:#e8c06a;
+  --gold-glow:rgba(212,168,67,0.12);--white:#edeae3;--muted:#5c5f6b;
+  --text:#a8aab5;--green:#3ecf8e;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--text);font-family:'Barlow',sans-serif;font-size:16px;line-height:1.7;overflow-x:hidden;cursor:none}
+#cur{position:fixed;width:6px;height:6px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+#cur-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(212,168,67,.35);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9990;opacity:.022;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 56px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,backdrop-filter .4s}
+nav.scrolled{background:rgba(7,8,10,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.08em;color:var(--white);text-decoration:none}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-btn{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:.12em;color:var(--gold);text-decoration:none;border:1px solid rgba(212,168,67,.4);padding:10px 28px;border-radius:2px;transition:all .25s}
+.nav-btn:hover{background:var(--gold);color:var(--black)}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;position:relative}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:130px 64px 80px;position:relative;z-index:2}
+.hero-tag{display:flex;align-items:center;gap:14px;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;opacity:0;animation:up .7s ease forwards .3s}
+.hero-tag::before{content:'';width:28px;height:1px;background:var(--gold)}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(72px,9vw,130px);line-height:.92;letter-spacing:.03em;color:var(--white);margin-bottom:6px;opacity:0;animation:up .8s ease forwards .45s}
+.hero h1 .ac{color:var(--gold)}
+.hero-role{font-family:'Bebas Neue',sans-serif;font-size:clamp(18px,2.2vw,28px);letter-spacing:.18em;color:var(--muted);margin-bottom:32px;opacity:0;animation:up .8s ease forwards .6s}
+.hero-desc{font-size:15px;font-weight:300;line-height:1.85;color:var(--text);max-width:420px;margin-bottom:44px;opacity:0;animation:up .8s ease forwards .75s}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:up .8s ease forwards .9s}
+.btn-gold{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--black);font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.1em;padding:14px 36px;border-radius:2px;text-decoration:none;transition:all .25s;border:none;cursor:none}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 12px 40px rgba(212,168,67,.25)}
+.btn-ghost{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--border);color:var(--text);font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.1em;padding:14px 36px;border-radius:2px;text-decoration:none;transition:all .25s}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+.hero-stats{display:flex;gap:36px;margin-top:60px;padding-top:36px;border-top:1px solid var(--border);opacity:0;animation:up .8s ease forwards 1.05s;flex-wrap:wrap}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:40px;line-height:1;color:var(--white);margin-bottom:4px}
+.stat-n span{color:var(--gold)}
+.stat-l{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+
+/* HERO RIGHT */
+.hero-right{position:relative;overflow:hidden;background:var(--dark2);display:flex;align-items:center;justify-content:center}
+.hero-right::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(212,168,67,.07) 0%,transparent 65%);animation:breathe 5s ease-in-out infinite}
+.soundwave{display:flex;align-items:center;gap:5px;height:200px}
+.sw-bar{width:4px;border-radius:4px;background:linear-gradient(180deg,var(--gold2),var(--gold));animation:sw 1.4s ease-in-out infinite;opacity:.6}
+.hero-corner{position:absolute;bottom:40px;left:40px;right:40px;display:flex;justify-content:space-between;align-items:flex-end}
+.hero-loc{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.hero-loc span{color:var(--gold)}
+.scroll-hint{display:flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.scroll-line{width:1px;height:36px;background:linear-gradient(var(--gold),transparent);animation:spulse 2s ease-in-out infinite}
+
+/* TICKER */
+.ticker-wrap{overflow:hidden;padding:14px 0;background:rgba(212,168,67,.03);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.ticker-inner{display:flex;gap:56px;width:max-content;animation:ticker 22s linear infinite}
+.t-item{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:.2em;color:rgba(212,168,67,.38);white-space:nowrap;display:flex;align-items:center;gap:20px}
+.t-dot{width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:.35}
+
+/* SECTION */
+.sec{padding:90px 56px;max-width:1200px;margin:0 auto}
+.sec-tag{display:flex;align-items:center;gap:12px;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.sec-tag::before{content:'';width:22px;height:1px;background:var(--gold)}
+.sec-h{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,5vw,68px);letter-spacing:.03em;color:var(--white);line-height:.95}
+.sec-h .ac{color:var(--gold)}
+
+/* ABOUT */
+.about-wrap{background:var(--dark)}
+.about-inner{max-width:1200px;margin:0 auto;padding:90px 56px;display:grid;grid-template-columns:1fr 1.5fr;gap:72px;align-items:center}
+.about-card{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--gold);padding:36px 32px;border-radius:4px}
+.about-card-lbl{font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:.22em;color:var(--gold);margin-bottom:16px;text-transform:uppercase}
+.about-card p{font-size:15px;font-weight:300;line-height:1.9;color:var(--text);margin-bottom:12px}
+.about-card p:last-child{margin-bottom:0}
+.about-card strong{color:var(--white);font-weight:500}
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:30px}
+.skill-item{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text)}
+.skill-item::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0}
+
+/* ARTISTS MARQUEE */
+.artists-wrap{overflow:hidden;padding:20px 0;background:var(--dark2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.artists-inner{display:flex;gap:60px;width:max-content;animation:ticker 30s linear infinite}
+.artist-item{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.15em;color:var(--muted);white-space:nowrap;display:flex;align-items:center;gap:20px;transition:color .2s}
+.artist-item:hover{color:var(--gold)}
+.artist-sep{width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:.3;flex-shrink:0}
+
+/* STREAMS */
+.streams-wrap{background:var(--black)}
+.streams-inner{max-width:1200px;margin:0 auto;padding:90px 56px}
+.streams-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:52px}
+.stream-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:24px 20px;position:relative;overflow:hidden;transition:transform .3s,border-color .3s}
+.stream-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent)}
+.stream-card:hover{transform:translateY(-4px);border-color:rgba(212,168,67,.2)}
+.stream-num{font-family:'Bebas Neue',sans-serif;font-size:40px;line-height:1;color:var(--green);margin-bottom:6px;letter-spacing:.03em}
+.stream-title{font-size:13px;font-weight:500;color:var(--white);margin-bottom:3px;line-height:1.3}
+.stream-artist{font-size:11px;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em}
+.stream-role{font-size:11px;color:rgba(212,168,67,.6);letter-spacing:.05em}
+.stream-total{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:4px;padding:28px 32px;margin-top:12px;display:flex;align-items:center;gap:24px}
+.stream-total-num{font-family:'Bebas Neue',sans-serif;font-size:56px;line-height:1;color:var(--green)}
+.stream-total-label{font-size:14px;color:var(--text);font-weight:300;line-height:1.6}
+.stream-total-label strong{color:var(--white);font-weight:500}
+
+/* SERVICES */
+.svc-wrap{background:var(--dark)}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-top:52px}
+.svc-card{background:var(--dark2);padding:44px 32px;transition:background .3s;position:relative;overflow:hidden}
+.svc-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .4s ease}
+.svc-card:hover::after{transform:scaleX(1)}
+.svc-card:hover{background:var(--surface)}
+.svc-icon{font-size:28px;margin-bottom:18px;display:block}
+.svc-name{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.05em;color:var(--white);margin-bottom:10px}
+.svc-desc{font-size:13px;color:var(--muted);line-height:1.7;font-weight:300}
+
+/* PORTFOLIO */
+.port-wrap{background:var(--black)}
+.port-inner{max-width:1200px;margin:0 auto;padding:90px 56px}
+.port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:52px}
+.port-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;text-decoration:none;display:block;transition:transform .3s,box-shadow .3s}
+.port-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.port-visual{height:150px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.pv1{background:linear-gradient(135deg,#0a1f0a,#0d2a14)}
+.pv2{background:linear-gradient(135deg,#0d1117,#111827)}
+.pv3{background:linear-gradient(135deg,#1a1205,#231a08)}
+.port-icon{font-size:44px;opacity:.45;transition:opacity .3s,transform .3s}
+.port-card:hover .port-icon{opacity:.85;transform:scale(1.08)}
+.port-badge{position:absolute;top:10px;right:10px;background:rgba(212,168,67,.1);border:1px solid rgba(212,168,67,.3);color:var(--gold);font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:2px}
+.port-body{padding:22px}
+.port-name{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.04em;color:var(--white);margin-bottom:6px}
+.port-desc{font-size:12px;color:var(--muted);line-height:1.6;font-weight:300}
+.port-lnk{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);transition:gap .2s}
+.port-card:hover .port-lnk{gap:10px}
+
+/* COURSE */
+.course-wrap{background:var(--dark);border-top:1px solid var(--border)}
+.course-inner{max-width:1200px;margin:0 auto;padding:90px 56px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.course-price{display:flex;align-items:baseline;gap:14px;margin:24px 0 32px}
+.price-old{font-size:16px;color:var(--muted);text-decoration:line-through}
+.price-new{font-family:'Bebas Neue',sans-serif;font-size:60px;line-height:1;color:var(--green)}
+.c-feats{display:flex;flex-direction:column;gap:10px;margin-bottom:32px}
+.c-feat{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--text);font-weight:300}
+.c-feat::before{content:'✦';color:var(--gold);font-size:9px;flex-shrink:0}
+.eq-wrap{display:flex;align-items:flex-end;gap:5px;height:180px;justify-content:center}
+.eq-b{width:14px;border-radius:3px 3px 0 0;background:linear-gradient(180deg,var(--gold2),var(--gold));animation:eq 1.3s ease-in-out infinite;opacity:.6}
+
+/* CONTACT */
+.contact-wrap{background:var(--black)}
+.contact-inner{max-width:1200px;margin:0 auto;padding:90px 56px;display:grid;grid-template-columns:1fr 1fr;gap:72px}
+.c-links{display:flex;flex-direction:column;gap:12px;margin-top:36px}
+.c-link{display:flex;align-items:center;gap:16px;padding:18px 22px;background:var(--surface);border:1px solid var(--border);border-radius:4px;text-decoration:none;transition:all .2s}
+.c-link:hover{border-color:var(--gold);background:var(--gold-glow);transform:translateX(4px)}
+.cl-icon{font-size:18px;flex-shrink:0}
+.cl-lbl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.cl-val{font-size:14px;color:var(--white)}
+.c-right h3{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.05em;color:var(--white);margin-bottom:22px}
+.c-right p{font-size:15px;font-weight:300;line-height:1.85;color:var(--text);margin-bottom:28px}
+.btn-wa{display:inline-flex;align-items:center;gap:14px;background:linear-gradient(135deg,#25d366,#20bd5a);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.1em;padding:18px 40px;border-radius:2px;text-decoration:none;transition:all .25s;width:100%;justify-content:center;box-shadow:0 8px 32px rgba(37,211,102,.2)}
+.btn-wa:hover{transform:translateY(-2px);box-shadow:0 16px 48px rgba(37,211,102,.3)}
+.wa-icon{font-size:24px}
+
+/* FOOTER */
+footer{background:var(--dark);border-top:1px solid var(--border);padding:36px 56px;display:flex;align-items:center;justify-content:space-between}
+.f-logo{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.08em;color:var(--white)}
+.f-logo span{color:var(--gold)}
+.f-copy{font-size:11px;color:var(--muted)}
+.f-links{display:flex;gap:20px}
+.f-links a{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
+.f-links a:hover{color:var(--gold)}
+
+/* REVEAL */
+.rev{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.rev.on{opacity:1;transform:translateY(0)}
+
+/* KEYFRAMES */
+@keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes breathe{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.15);opacity:1}}
+@keyframes sw{0%,100%{height:15%}50%{height:100%}}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes spulse{0%{opacity:0;transform:scaleY(0)}50%{opacity:1;transform:scaleY(1)}100%{opacity:0;transform:scaleY(1)}}
+@keyframes eq{0%,100%{height:15%}50%{height:100%}}
+
+@media(max-width:900px){
+  nav{padding:18px 24px}
+  .nav-links{display:none}
+  .hero{grid-template-columns:1fr}
+  .hero-right{display:none}
+  .hero-left{padding:110px 24px 60px}
+  .about-inner,.course-inner,.contact-inner{grid-template-columns:1fr;gap:48px}
+  .svc-grid{grid-template-columns:1fr}
+  .port-grid,.streams-grid{grid-template-columns:1fr 1fr}
+  .sec,.about-inner,.port-inner,.streams-inner,.course-inner,.contact-inner{padding:60px 24px}
+  footer{flex-direction:column;gap:16px;text-align:center}
+}
+@media(max-width:600px){
+  .port-grid,.streams-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div><div id="cur-ring"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">DANIEL <span>MOSQUITO</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">Sobre</a></li>
+    <li><a href="#streams">Streams</a></li>
+    <li><a href="#services">Serviços</a></li>
+    <li><a href="#portfolio">Portfólio</a></li>
+    <li><a href="#contact">Contato</a></li>
+  </ul>
+  <a href="https://wa.me/556293150288" target="_blank" class="nav-btn">FALE COMIGO</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-tag">Cantor · Músico · Produtor · Técnico de Som</p>
+    <h1>DANIEL<br><span class="ac">"MOSQUITO"</span></h1>
+    <p class="hero-role">Arte, técnica e identidade</p>
+    <p class="hero-desc">
+      Um dos nomes emergentes mais relevantes da nova geração do gospel brasileiro. Cantor, músico, produtor e engenheiro de áudio — tudo em um único ecossistema criativo com propósito.
+    </p>
+    <div class="hero-btns">
+      <a href="#portfolio" class="btn-gold">VER PORTFÓLIO ↓</a>
+      <a href="https://wa.me/556293150288" target="_blank" class="btn-ghost">FALE COMIGO</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-n">+250<span>M</span></div>
+        <div class="stat-l">Streams digitais</div>
+      </div>
+      <div>
+        <div class="stat-n">10<span>+</span></div>
+        <div class="stat-l">Anos de experiência</div>
+      </div>
+      <div>
+        <div class="stat-n">100<span>+</span></div>
+        <div class="stat-l">Projetos realizados</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="soundwave" id="sw"></div>
+    <div class="hero-corner">
+      <div class="hero-loc">Goiânia · <span>Brasil</span></div>
+      <div class="scroll-hint"><div class="scroll-line"></div>Scroll</div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span class="t-item">🎤 CANTOR<span class="t-dot"></span></span>
+    <span class="t-item">🎹 TECLADOS<span class="t-dot"></span></span>
+    <span class="t-item">🎛️ MIXAGEM<span class="t-dot"></span></span>
+    <span class="t-item">⚡ MASTER<span class="t-dot"></span></span>
+    <span class="t-item">🎵 PRODUÇÃO MUSICAL<span class="t-dot"></span></span>
+    <span class="t-item">⛪ MINISTÉRIO<span class="t-dot"></span></span>
+    <span class="t-item">🎬 AUDIOVISUAL<span class="t-dot"></span></span>
+    <span class="t-item">📱 PRESENÇA DIGITAL<span class="t-dot"></span></span>
+    <span class="t-item">🎤 CANTOR<span class="t-dot"></span></span>
+    <span class="t-item">🎹 TECLADOS<span class="t-dot"></span></span>
+    <span class="t-item">🎛️ MIXAGEM<span class="t-dot"></span></span>
+    <span class="t-item">⚡ MASTER<span class="t-dot"></span></span>
+    <span class="t-item">🎵 PRODUÇÃO MUSICAL<span class="t-dot"></span></span>
+    <span class="t-item">⛪ MINISTÉRIO<span class="t-dot"></span></span>
+    <span class="t-item">🎬 AUDIOVISUAL<span class="t-dot"></span></span>
+    <span class="t-item">📱 PRESENÇA DIGITAL<span class="t-dot"></span></span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div id="about" class="about-wrap">
+  <div class="about-inner">
+    <div class="rev">
+      <div class="about-card">
+        <div class="about-card-lbl">Perfil</div>
+        <p>Daniel "Mosquito" une <strong>performance vocal, engenharia de áudio e presença digital</strong> em um único ecossistema criativo.</p>
+        <p>Sua missão vai além da música: <strong>levar esperança, alegria e transformação</strong> através da arte — com forte impacto emocional em igrejas, palcos e plataformas digitais.</p>
+        <p>Com <strong>+250 milhões de streams</strong> em projetos em que participou, Daniel construiu uma das trajetórias mais sólidas da nova geração gospel brasileira.</p>
+      </div>
+    </div>
+    <div class="rev">
+      <div class="sec-tag">Sobre</div>
+      <h2 class="sec-h" style="margin-bottom:24px;">Arte.<br><span class="ac">Técnica.</span><br>Identidade.</h2>
+      <p style="font-weight:300;line-height:1.9;color:var(--text);margin-bottom:18px;font-size:15px;">
+        Daniel Silva Alcântara, artisticamente conhecido como Daniel "Mosquito", é cantor, músico, produtor e engenheiro de áudio com anos de trajetória na cena gospel brasileira. Conecta o ambiente de adoração à linguagem contemporânea da internet com autenticidade e excelência sonora.
+      </p>
+      <p style="font-weight:300;line-height:1.9;color:var(--text);margin-bottom:26px;font-size:15px;">
+        Seu trabalho já alcançou milhares de pessoas — incluindo crianças e famílias que encontram na música momentos reais de conexão, alegria e transformação. Uma identidade sólida construída com propósito.
+      </p>
+      <div class="skills-grid">
+        <div class="skill-item">Canto & Performance</div>
+        <div class="skill-item">Produção Musical</div>
+        <div class="skill-item">Mixagem & Masterização</div>
+        <div class="skill-item">Teclados & Arranjos</div>
+        <div class="skill-item">Som Ao Vivo (PA)</div>
+        <div class="skill-item">Ministério de Adoração</div>
+        <div class="skill-item">Presença Digital</div>
+        <div class="skill-item">Formação de Técnicos</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTISTS MARQUEE -->
+<div class="artists-wrap">
+  <div class="artists-inner">
+    <span class="artist-item">Felipe Rodrigues<span class="artist-sep"></span></span>
+    <span class="artist-item">Clayton Queiroz<span class="artist-sep"></span></span>
+    <span class="artist-item">Carol Braga<span class="artist-sep"></span></span>
+    <span class="artist-item">Vitor Santana<span class="artist-sep"></span></span>
+    <span class="artist-item">Felipe Rodrigues<span class="artist-sep"></span></span>
+    <span class="artist-item">Clayton Queiroz<span class="artist-sep"></span></span>
+    <span class="artist-item">Carol Braga<span class="artist-sep"></span></span>
+    <span class="artist-item">Vitor Santana<span class="artist-sep"></span></span>
+  </div>
+</div>
+
+<!-- STREAMS -->
+<div id="streams" class="streams-wrap">
+  <div class="streams-inner">
+    <div class="rev">
+      <div class="sec-tag">Projetos em Números</div>
+      <h2 class="sec-h">+250 Milhões de <span class="ac">Streams</span></h2>
+    </div>
+    <div class="stream-total rev">
+      <div class="stream-total-num">+250M</div>
+      <div class="stream-total-label">
+        <strong>Streams digitais acumulados</strong><br>
+        em projetos como cantor, produtor, tecladista e engenheiro de mix & master
+      </div>
+    </div>
+    <div class="streams-grid rev" style="margin-top:20px">
+      <div class="stream-card">
+        <div class="stream-num">127M</div>
+        <div class="stream-title">Saudade (Álbum)</div>
+        <div class="stream-artist">Felipe Rodrigues</div>
+        <div class="stream-role">Teclados</div>
+      </div>
+      <div class="stream-card">
+        <div class="stream-num">9M</div>
+        <div class="stream-title">Solinho do Mosquito</div>
+        <div class="stream-artist">Daniel Mosquito</div>
+        <div class="stream-role">Produção · Teclados · Mix · Master</div>
+      </div>
+      <div class="stream-card">
+        <div class="stream-num">6M</div>
+        <div class="stream-title">Eu Vou Construir (Ao Vivo)</div>
+        <div class="stream-artist">Felipe Rodrigues</div>
+        <div class="stream-role">Teclados · Mix · Master</div>
+      </div>
+      <div class="stream-card">
+        <div class="stream-num">5M</div>
+        <div class="stream-title">O Escudo</div>
+        <div class="stream-artist">Carol Braga</div>
+        <div class="stream-role">Teclados · Mix · Master</div>
+      </div>
+      <div class="stream-card">
+        <div class="stream-num">3M</div>
+        <div class="stream-title">Eu Só Quero Adorar</div>
+        <div class="stream-artist">Clayton Queiroz feat. Josué Freitas</div>
+        <div class="stream-role">Produção · Teclados · Mix · Master</div>
+      </div>
+      <div class="stream-card">
+        <div class="stream-num">2M</div>
+        <div class="stream-title">O Homem e a Tempestade</div>
+        <div class="stream-artist">Clayton Queiroz</div>
+        <div class="stream-role">Produção · Teclados · Mix · Master</div>
+      </div>
+      <div class="stream-card">
+        <div class="stream-num">1M</div>
+        <div class="stream-title">João 20 + Pra Sempre</div>
+        <div class="stream-artist">Vitor Santana</div>
+        <div class="stream-role">Mix · Master</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<div id="services" class="svc-wrap">
+  <div class="sec">
+    <div class="rev">
+      <div class="sec-tag">Serviços</div>
+      <h2 class="sec-h">O que eu <span class="ac">faço</span></h2>
+    </div>
+    <div class="svc-grid rev">
+      <div class="svc-card"><span class="svc-icon">🎤</span><div class="svc-name">Canto & Performance</div><p class="svc-desc">Voz com identidade própria. Shows, eventos, DVDs e projetos musicais gospel com impacto emocional e presença de palco marcante.</p></div>
+      <div class="svc-card"><span class="svc-icon">🎛️</span><div class="svc-name">Mixagem & Master</div><p class="svc-desc">Mixagem profissional do zero ao produto final. Gate, EQ, compressão, reverb e master com método e precisão — funciona em qualquer DAW.</p></div>
+      <div class="svc-card"><span class="svc-icon">🎹</span><div class="svc-name">Produção Musical</div><p class="svc-desc">Arranjos, produção e direção musical para artistas, ministérios e projetos audiovisuais. Do conceito ao produto final com identidade própria.</p></div>
+      <div class="svc-card"><span class="svc-icon">🎤</span><div class="svc-name">Som Ao Vivo</div><p class="svc-desc">Operação e supervisão de PA em shows, cultos e eventos. Rider técnico, timbragem de banda e entrega de som consistente e impactante.</p></div>
+      <div class="svc-card"><span class="svc-icon">⛪</span><div class="svc-name">Consultoria Ministerial</div><p class="svc-desc">Diagnóstico e consultoria para ministérios de louvor e equipes de som. Do sistema ao músico — excelência em cada detalhe.</p></div>
+      <div class="svc-card"><span class="svc-icon">🎬</span><div class="svc-name">Projetos Audiovisuais</div><p class="svc-desc">Direção de áudio para DVDs, videoclipes e captações ao vivo. Experiência em grandes produções do cenário gospel nacional.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- PORTFOLIO -->
+<div id="portfolio" class="port-wrap">
+  <div class="port-inner">
+    <div class="rev">
+      <div class="sec-tag">Portfólio</div>
+      <h2 class="sec-h">Projetos em <span class="ac">destaque</span></h2>
+    </div>
+    <div class="port-grid rev">
+      <a href="https://open.spotify.com/playlist/0ehCqK8Q884UxfBQ8k2Ryj" target="_blank" class="port-card">
+        <div class="port-visual pv1"><span class="port-icon">🎧</span><span class="port-badge">Spotify</span></div>
+        <div class="port-body">
+          <div class="port-name">Portfólio de Mixagem</div>
+          <p class="port-desc">Ouça as produções e mixagens realizadas por Daniel Mosquito. Uma curadoria do trabalho sonoro no Spotify.</p>
+          <div class="port-lnk">Ouvir agora ↗</div>
+        </div>
+      </a>
+      <a href="https://open.spotify.com/playlist/4ovnb0z0IfsZErfsgV3JlP" target="_blank" class="port-card">
+        <div class="port-visual pv2"><span class="port-icon">🎹</span><span class="port-badge">Spotify</span></div>
+        <div class="port-body">
+          <div class="port-name">Portfólio de Tecladista</div>
+          <p class="port-desc">Performances e teclados em projetos com grandes artistas do gospel brasileiro. Playlist no Spotify.</p>
+          <div class="port-lnk">Ouvir agora ↗</div>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/@DanielMosquito?sub_confirmation=1" target="_blank" class="port-card">
+        <div class="port-visual pv3"><span class="port-icon">▶️</span><span class="port-badge">YouTube</span></div>
+        <div class="port-body">
+          <div class="port-name">Canal do YouTube</div>
+          <p class="port-desc">Conteúdo autoral, tutoriais, performances e muito mais. Inscreva-se no canal de Daniel Mosquito.</p>
+          <div class="port-lnk">Acessar canal ↗</div>
+        </div>
+      </a>
+    </div>
+    <!-- Links do Linktree -->
+    <div class="rev" style="margin-top:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+      <a href="https://pay.kiwify.com.br/PA60MzT?afid=EtpiekwS" target="_blank" class="port-card">
+        <div class="port-body" style="padding:20px 22px;">
+          <div class="port-name" style="font-size:16px;">Redkeys</div>
+          <p class="port-desc">RedKeys 3 — a livraria que uso em todos os projetos.</p>
+          <div class="port-lnk">Ver produto ↗</div>
+        </div>
+      </a>
+      <a href="https://go.hotmart.com/K97301678S" target="_blank" class="port-card">
+        <div class="port-body" style="padding:20px 22px;">
+          <div class="port-name" style="font-size:16px;">Samples Worship</div>
+          <p class="port-desc">Samples para SPD, Roland XPS10, Samplepad (WAV).</p>
+          <div class="port-lnk">Ver produto ↗</div>
+        </div>
+      </a>
+      <a href="https://pay.kiwify.com.br/hzySLD6" target="_blank" class="port-card">
+        <div class="port-body" style="padding:20px 22px;">
+          <div class="port-name" style="font-size:16px;">Pack de Vinhetas</div>
+          <p class="port-desc">Pack de Vinhetas V1.0 para produções audiovisuais.</p>
+          <div class="port-lnk">Ver produto ↗</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- COURSE -->
+<div id="course" class="course-wrap">
+  <div class="course-inner">
+    <div class="rev">
+      <div class="sec-tag">Novo Curso</div>
+      <h2 class="sec-h">WAVEFORM<br><span class="ac">MIXAGEM<br>NA PRÁTICA</span></h2>
+      <p style="margin-top:20px;font-weight:300;line-height:1.85;color:var(--text);font-size:15px;max-width:420px;">O problema nunca foi o equipamento. Foi a falta de fundamento aplicado do jeito certo. Isso muda aqui.</p>
+      <div class="c-feats" style="margin-top:24px;">
+        <div class="c-feat">Gate, EQ, Compressão, Reverb e Master</div>
+        <div class="c-feat">Funciona em qualquer DAW ou sistema de áudio</div>
+        <div class="c-feat">Timbragem completa — bateria, vocais, instrumentos</div>
+        <div class="c-feat">Acesso imediato e vitalício</div>
+      </div>
+      <div class="course-price"><span class="price-old">R$197</span><span class="price-new">R$49,90</span></div>
+      <a href="https://pay.hotmart.com/Y8067914C?bid=1776446034388" target="_blank" class="btn-gold">GARANTIR ACESSO ↗</a>
+    </div>
+    <div class="rev"><div class="eq-wrap" id="eq"></div></div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="contact-wrap">
+  <div class="contact-inner">
+    <div class="rev">
+      <div class="sec-tag">Contato</div>
+      <h2 class="sec-h" style="margin-bottom:20px;">Vamos<br><span class="ac">trabalhar</span><br>juntos?</h2>
+      <p style="font-weight:300;line-height:1.85;color:var(--text);font-size:15px;margin-bottom:8px;">Agendas, projetos de mixagem, produção musical, consultoria — disponível para colaborações com propósito.</p>
+      <div class="c-links">
+        <a href="https://wa.me/556283180073" target="_blank" class="c-link">
+          <span class="cl-icon">📅</span>
+          <div><div class="cl-lbl">Agende já</div><div class="cl-val">WhatsApp Agendas</div></div>
+        </a>
+        <a href="https://open.spotify.com/playlist/0ehCqK8Q884UxfBQ8k2Ryj" target="_blank" class="c-link">
+          <span class="cl-icon">🎧</span>
+          <div><div class="cl-lbl">Portfólio de Mixagem</div><div class="cl-val">Ouça no Spotify</div></div>
+        </a>
+        <a href="https://pay.hotmart.com/Y8067914C?bid=1776446034388" target="_blank" class="c-link">
+          <span class="cl-icon">🎓</span>
+          <div><div class="cl-lbl">Curso WAVEFORM</div><div class="cl-val">Mixagem na Prática — R$49,90</div></div>
+        </a>
+      </div>
+    </div>
+    <div class="rev">
+      <div class="c-right">
+        <h3>MIXAGEM, MASTER<br>E PRODUÇÃO MUSICAL</h3>
+        <p>Para projetos de mixagem, masterização, produção musical ou qualquer colaboração profissional, fale direto comigo pelo WhatsApp. Respondo pessoalmente.</p>
+        <a href="https://wa.me/556293150288" target="_blank" class="btn-wa">
+          <span class="wa-icon">💬</span>
+          ENVIAR MENSAGEM
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo">DANIEL <span>MOSQUITO</span></div>
+  <div class="f-copy">© 2026 Daniel Mosquito · Goiânia, Brasil</div>
+  <div class="f-links">
+    <a href="https://www.youtube.com/@DanielMosquito" target="_blank">YouTube</a>
+    <a href="https://open.spotify.com/playlist/0ehCqK8Q884UxfBQ8k2Ryj" target="_blank">Spotify</a>
+    <a href="https://pay.hotmart.com/Y8067914C?bid=1776446034388" target="_blank">Curso</a>
+    <a href="https://wa.me/556293150288" target="_blank">WhatsApp</a>
+  </div>
+</footer>
+
+<script>
+// Cursor
+const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+(function anim(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(anim)})();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ring.style.width='52px';ring.style.height='52px';ring.style.borderColor='rgba(212,168,67,.7)'});
+  el.addEventListener('mouseleave',()=>{ring.style.width='32px';ring.style.height='32px';ring.style.borderColor='rgba(212,168,67,.35)'});
+});
+
+// Navbar
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>50));
+
+// Sound wave
+const sw=document.getElementById('sw');
+for(let i=0;i<28;i++){const b=document.createElement('div');b.className='sw-bar';b.style.height=(10+Math.random()*90)+'%';b.style.animationDelay=(Math.random()*1.5)+'s';b.style.animationDuration=(1+Math.random())+'s';sw.appendChild(b)}
+
+// EQ bars
+const eq=document.getElementById('eq');
+[30,55,45,80,35,95,50,70,100,60,85,40,75,30,90,50,65].forEach((h,i)=>{const b=document.createElement('div');b.className='eq-b';b.style.height=h+'%';b.style.animationDelay=(i*.07)+'s';eq.appendChild(b)});
+
+// Scroll reveal
+const io=new IntersectionObserver(e=>e.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll('.rev').forEach(r=>io.observe(r));
+</script>
+</body>
+</html>
